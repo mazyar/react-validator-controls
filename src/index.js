@@ -1,22 +1,12 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { REQUIRED, MOBILE, MOBILE_EMAIL } from "./constant";
+import InputValidate from './input.validate';
+import ValidateForm from './form.validate';
 
-import styles from './styles.css'
+export default ValidateForm;
 
-export default class ExampleComponent extends Component {
-  static propTypes = {
-    text: PropTypes.string
-  }
-
-  render() {
-    const {
-      text
-    } = this.props
-
-    return (
-      <div className={styles.test}>
-        Example Component: {text}
-      </div>
-    )
-  }
+export {
+    InputValidate,
+    REQUIRED,
+    MOBILE,
+    MOBILE_EMAIL
 }

@@ -1,6 +1,6 @@
 {
   "name": "react-validator-controls",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "react validation controls",
   "author": "",
   "license": "MIT",
@@ -52,5 +52,8 @@
   },
   "files": [
     "dist"
-  ]
+  ],
+  "dependencies": {
+    "validator": "^10.4.0"
+  }
 }
