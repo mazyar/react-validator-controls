@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
-import validator from 'validator';
+// import validator from 'validator';
 import PropTypes from 'prop-types';
-import * as validate from './constant';
+
 
 /**
  *  Validate Input Component
@@ -37,51 +37,22 @@ export default class ValidateInput extends Component {
      */
     is_valid() {
 
-        const { valiadate_list, value } = this.props;
+        const { valiadates, value, error_message } = this.props;
 
         /**
          * Empty error lost before check
          */
         this.error_list = [];
 
-        _.forEach(valiadate_list, val => {
-            switch (val.type) {
-
-                /**
-                * Required Validate
-                */
-                case validate.REQUIRED:
-
-                    if (!value) {
-                        this.error_list.push(val);
-                    }
-
-                    break;
-
-                /**
-                 * Mobile Validate
-                 */
-                case validate.MOBILE:
-
-                    if (value && !validator.isMobilePhone(value, 'fa-IR')) {
-                        this.error_list.push(val);
-                    }
-
-                    break;
-
-                /**
-                 * Mobile Or Email, value at least is email or mobile
-                 */
-                case validate.MOBILE_EMAIL:
-
-                    if (value && (!validator.isEmail(value) && !validator.isMobilePhone(value, 'fa-IR'))) {
-                        this.error_list.push(val);
-                    }
-
-                    break;
-
-                default:
-                    break;
+        /**
+         * check validation
+         */
+        _.forEach(valiadates, func => {
+            if (_.functions(func)) {
+                const message = func(value);
+                if (message) {
+                    this.error_list.push(error_message || message);
+                }
             }
         });
 
@@ -107,7 +78,7 @@ export default class ValidateInput extends Component {
         return <React.Fragment>
             {this.props.children}
             {_.map(this.error_list, (value, index) => (
-                <span key={'err' + index} className='error-view'>{value.message}</span>
+                <span key={'err' + index} className='error-view'>{value}</span>
             ))}
         </React.Fragment>
     }
