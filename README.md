@@ -15,12 +15,54 @@ npm install --save react-validator-controls
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'react-validator-controls'
+import { InputValidate, ValidateForm } from 'react-validator-controls';
+import { required_validation, mobile_email_validation } from 'react-validator-controls';
 
 class Example extends Component {
+
+
+  handle_change = (e) => this.setState({ [e.target.name]: e.target.value });
+
+  handle_submit = (event, is_valid) => {
+
+    event.preventDefault();
+    const { username, password } = this.state;
+
+     if (is_valid === true) {
+        ... your code
+     }
+
+  }
+
   render () {
     return (
-      <MyComponent />
+     <ValidateForm
+        onSubmit={this.handle_submit.bind(this)}
+        className="forms" id="forms-login" noValidate>
+         <div>
+            <InputValidate
+                  valiadates={[required_validation, mobile_email_validation]}
+                  is_form={this.state.is_form}
+                  value={this.state.username}>
+                      <input className="form-control login-frm-input"
+                                          type="text" id="username" name="username"
+                                          onChange={this.handle_change}
+                                          placeholder="mobile / Email" />
+            </InputValidate>
+         </div>
+
+         <div>
+            <InputValidate
+                   valiadates={[required_validation]}
+                   error_message='Please enter your password'
+                   is_form={this.state.is_form}
+                   value={this.state.password}>
+                      <input onChange={this.handle_change}
+                             type="password" id="password" name="password"
+                             placeholder="Password" />
+            </InputValidate>
+         </div>
+     </ValidateForm>
     )
   }
 }
