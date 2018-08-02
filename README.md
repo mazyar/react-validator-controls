@@ -17,6 +17,21 @@ import React, { Component } from 'react'
 
 import { InputValidate, ValidateForm } from 'react-validator-controls';
 import { required_validation, mobile_email_validation } from 'react-validator-controls';
+import validator from 'validator';
+
+/**
+ * Url validation
+ */
+const url_validation = (value) => {
+    if (value && !validator.isURL(value)) {
+        return  { message:'Enter valid url' , type:'url'  } ;
+    }
+}
+
+const error_message_list = {
+    required:'enter any valid',
+    url: 'enter valid url'
+}
 
 class Example extends Component {
 
@@ -54,7 +69,7 @@ class Example extends Component {
          <div>
             <InputValidate
                    validates={[required_validation]}
-                   error_message='Please enter your password'
+                   errorMessage='Please enter your password'
                    isForm={this.state.is_form}
                    value={this.state.password}>
                       <input onChange={this.handle_change}
@@ -62,6 +77,30 @@ class Example extends Component {
                              placeholder="Password" />
             </InputValidate>
          </div>
+
+          <div>
+            <InputValidate
+                   validates={[required_validation,url_validation]}
+                   isForm={this.state.is_form}
+                   value={this.state.password}>
+                      <input onChange={this.handle_change}
+                             type="text" id="url" name="url"
+                             placeholder="url" />
+            </InputValidate>
+         </div>
+
+          <div>
+            <InputValidate
+                   validates={[required_validation,url_validation]}
+                   isForm={this.state.is_form}
+                   errorMessages={error_message_list}
+                   value={this.state.password}>
+                      <input onChange={this.handle_change}
+                             type="text" id="url" name="url"
+                             placeholder="url" />
+            </InputValidate>
+         </div>
+
      </ValidateForm>
     )
   }
