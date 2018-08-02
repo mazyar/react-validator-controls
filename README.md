@@ -41,8 +41,8 @@ class Example extends Component {
         className="forms" id="forms-login" noValidate>
          <div>
             <InputValidate
-                  valiadates={[required_validation, mobile_email_validation]}
-                  is_form={this.state.is_form}
+                  validates={[required_validation, mobile_email_validation]}
+                  iForm={this.state.is_form}
                   value={this.state.username}>
                       <input className="form-control login-frm-input"
                                           type="text" id="username" name="username"
@@ -53,9 +53,9 @@ class Example extends Component {
 
          <div>
             <InputValidate
-                   valiadates={[required_validation]}
+                   validates={[required_validation]}
                    error_message='Please enter your password'
-                   is_form={this.state.is_form}
+                   isForm={this.state.is_form}
                    value={this.state.password}>
                       <input onChange={this.handle_change}
                              type="password" id="password" name="password"
