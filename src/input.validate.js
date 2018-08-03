@@ -39,7 +39,7 @@ export default class ValidateInput extends Component {
     /**
      * validates , list for validate function
      * value, control value
-     * error_message,errorMessage, error message
+     * error_message,errorMessage, error message, error_message for old version
      */
     const {
       validates,
@@ -69,8 +69,14 @@ export default class ValidateInput extends Component {
           /// gets errors message from error messages list
           if (errorMessages && message.type && errorMessages[message.type]) {
             error_mgs = errorMessages[message.type];
-          } else {
+
+            /**
+             * if message is a object like { message: '' }
+             */
+          } else if (messaeg.messaeg) {
             error_mgs = errorMessage || error_message || message.message;
+          } else {
+            error_mgs = message || errorMessage || error_message;
           }
 
           this.error_list.push(error_mgs);
