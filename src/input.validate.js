@@ -73,8 +73,8 @@ export default class ValidateInput extends Component {
             /**
              * if message is a object like { message: '' }
              */
-          } else if (message.messaeg) {
-            error_mgs = errorMessage || error_message || message.message;
+          } else if (message.message) {
+            error_mgs = message.message;
           } else {
             error_mgs = message || errorMessage || error_message;
           }
