@@ -16,7 +16,7 @@ npm install --save react-validator-controls
 import React, { Component } from 'react'
 
 import { InputValidate, ValidateForm } from 'react-validator-controls';
-import { required_validation, mobile_email_validation } from 'react-validator-controls';
+import { Models } from 'react-validator-controls';
 import validator from 'validator';
 
 /**
@@ -56,7 +56,7 @@ class Example extends Component {
         className="forms" id="forms-login" noValidate>
          <div>
             <InputValidate
-                  validates={[required_validation, mobile_email_validation]}
+                  validates={[ Models.required_validation, Models.mobile_email_validation]}
                   iForm={this.state.is_form}
                   value={this.state.username}>
                       <input className="form-control login-frm-input"
@@ -68,7 +68,7 @@ class Example extends Component {
 
          <div>
             <InputValidate
-                   validates={[required_validation]}
+                   validates={[Models.required_validation]}
                    errorMessage='Please enter your password'
                    isForm={this.state.is_form}
                    value={this.state.password}>
@@ -80,7 +80,7 @@ class Example extends Component {
 
           <div>
             <InputValidate
-                   validates={[required_validation,url_validation]}
+                   validates={[Models.required_validation,url_validation]}
                    isForm={this.state.is_form}
                    value={this.state.password}>
                       <input onChange={this.handle_change}
@@ -91,7 +91,7 @@ class Example extends Component {
 
           <div>
             <InputValidate
-                   validates={[required_validation,url_validation]}
+                   validates={[Models.required_validation,url_validation]}
                    isForm={this.state.is_form}
                    errorMessages={error_message_list}
                    value={this.state.password}>
