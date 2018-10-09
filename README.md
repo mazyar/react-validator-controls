@@ -33,6 +33,13 @@ const error_message_list = {
     url: 'enter valid url'
 }
 
+/**
+ * if you need create jsx element for error validation
+ */
+ get_error = (msg) => {
+    return <div class="error-class-view">{msg}</div>
+ }
+
 class Example extends Component {
 
 
@@ -63,6 +70,7 @@ class Example extends Component {
             <InputValidate
                   validates={[ Models.required_validation, Models.mobile_email_validation]}
                   iForm={this.state.is_form}
+                  getError={get_error}   
                   value={this.state.username}>
                       <input className="form-control login-frm-input"
                                           type="text" id="username" name="username"

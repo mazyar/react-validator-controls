@@ -41,7 +41,7 @@ export default class ValidateInput extends Component {
      * value, control value
      * error_message,errorMessage, error message, error_message for old version
      */
-    const {
+    const {     
       validates,
       value,
       errorMessages,
@@ -93,7 +93,7 @@ export default class ValidateInput extends Component {
      * is_form : when form has been subit this value set to "True"
      * isForm: exist in 0.0.3 version similiar to is_form (new )
      */
-    const { is_form, isForm } = this.props;
+    const { is_form, isForm, getError } = this.props;
 
     /**
      * validate fail for show error message
@@ -106,6 +106,7 @@ export default class ValidateInput extends Component {
     return <React.Fragment>
       {this.props.children}
       {_.map(this.error_list, (value, index) => (
+        _.isFunction(getError) ? getError(value) : 
         <span key={'err' + index} className='error-view'>{value}</span>
       ))}
     </React.Fragment>
