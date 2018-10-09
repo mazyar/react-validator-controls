@@ -42,6 +42,11 @@ class Example extends Component {
 
     event.preventDefault();
     const { username, password } = this.state;
+    
+     /**
+         * set show loading and set form mode, is_form = true
+     */
+     this.setState({ loading: true, is_form: true });
 
      if (is_valid === true) {
         ... your code
